@@ -55,15 +55,15 @@ module selector(
             temp10 = qks-temp22;
             temp13 = qks-temp32;
             temp14 = qks-temp42;
-            if (temp5[29]==1'b0) y1 = temp11; 
+            if (temp8[29]==1'b0) y1 = temp41; 
             else if (temp6[29]==1'b0) y1 = temp21;
             else if (temp7[29]==1'b0) y1 = temp31;
-            else if (temp8[29]==1'b0) y1 = temp41;
+            else if (temp5[29]==1'b0) y1 = temp11;
             else y1 = (15'b0);
-            if (temp9[29]==1'b0) y2 = temp12; 
+            if (temp14[29]==1'b0) y2 = temp42; 
             else if (temp10[29]==1'b0) y2 = temp22;
             else if (temp13[29]==1'b0) y2 = temp32;
-            else if (temp14[29]==1'b0) y2 = temp42;
+            else if (temp9[29]==1'b0) y2 = temp12;
             else y2 = (15'b0);
             y[29:15] = y2;
             y[14:0] = y1;
@@ -81,10 +81,10 @@ module selector(
             temp6 = q-temp2;
             temp7 = q-temp3;
             temp8 = q-temp4;
-            if (temp5[29]==1'b0) y = temp1; 
+            if (temp8[29]==1'b0) y = temp4; 
             else if (temp6[29]==1'b0) y = temp2;
             else if (temp7[29]==1'b0) y = temp3;
-            else if (temp8[29]==1'b0) y = temp4;
+            else if (temp5[29]==1'b0) y = temp1;
             else y = (30'b0);
         end   
     end
