@@ -22,7 +22,7 @@
 
 module selector(
     input [29:0] x,
-    input dk,clk,
+    input dk,clk, det,
     output reg [29:0] y
     );
     wire [29:0] qk,qd,qks;
@@ -40,7 +40,14 @@ module selector(
             temp4 = x;
             temp41 = temp4[14:0];
             temp51 = temp4[29:15];
-            temp42 = temp51 - 15'd1;
+            if (det==1'b1) begin
+                if (temp51[0]==1'b0) temp42 = temp51 - 15'd1;
+                else temp42 = temp51;
+            end
+            else begin
+                if (temp51[0]==1'b1) temp42 = temp51 - 15'd1;
+                else temp42 = temp51;
+            end
             temp11 = temp41 + qks;
             temp12 = temp42 + qks;
             temp21 = temp41 - qks;
