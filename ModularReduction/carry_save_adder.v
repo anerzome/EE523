@@ -22,13 +22,15 @@
 
 module carry_save_adder(
     input [29:0] ip1,ip2,ip3,ip4,ip5,ip6,ip7,ip8,
-    output [29:0] c,s
+    output [29:0] c,s,
+    output det
     );
     wire [29:0] s10,s11,s12,s20,s21,s30;
     wire [29:0] c10,c11,c12,c20,c21,c30;
     wire [29:0] ip10,ip11,ip12;
     wire [29:0] ip20,ip21;
     wire [29:0] ip30,ip40;
+    wire x;
     fa_30 u0(.x(ip1),.y(ip2),.z(ip3),.s(s10),.c(c10));
     fa_30 u1(.x(ip4),.y(ip5),.z(ip6),.s(s11),.c(c11));
     ha_30 u2(.x(ip7),.y(ip8),.s(s12),.c(c12));
@@ -43,5 +45,5 @@ module carry_save_adder(
     assign ip30 = c30 << 1;
     fa_30 u6(.x(ip30),.y(s30),.z(s21),.s(s),.c(ip40));
     assign c = ip40 << 1;
-    
+    assign det = ((ip1[15]^ip2[15])^(ip3[15]^ip4[15]))^((ip5[15]^ip6[15])^(ip7[15]^ip8[15]));
 endmodule
