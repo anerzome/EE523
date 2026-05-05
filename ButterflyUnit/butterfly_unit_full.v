@@ -87,8 +87,8 @@ end
 wire [29:0] mod_s3_pre;
 wire [23:0] mod_s3 = mode ? {mod_s3_pre[26:15],mod_s3_pre[11:0]} : mod_s3_pre;
 
-wire [47:0] modredin_pre_low = mul_s2_r[23] ? ~mul_s2_r[23:0]+1 : mul_s2_r[23:0];
-wire [47:0] modredin_pre_hi = mul_s2_r[47] ? ~mul_s2_r[47:24]+1 : mul_s2_r[47:24];
+wire [23:0] modredin_pre_low = mul_s2_r[23] ? ~mul_s2_r[23:0]+1 : mul_s2_r[23:0];
+wire [23:0] modredin_pre_hi = mul_s2_r[47] ? ~mul_s2_r[47:24]+1 : mul_s2_r[47:24];
 wire [47:0] modredin_pre = mul_s2_r[47] ? ~mul_s2_r+1 : mul_s2_r;
 
 mod_red modred (
@@ -108,7 +108,8 @@ wire [23:0] modredout_post = mul_s2_r[47] ? (23'd8380417-mod_s3) : mod_s3;
 wire [23:0] modredout = mode ? {modredout_post_hi,modredout_post_low} : modredout_post;
 
 // pipeline regs
-reg signed [23:0] mod_s3_r, add_s3_r;
+reg signed [23:0] add_s3_r;
+reg [23:0] mod_s3_r;
 reg mode_s3, inv_s3;
 
 always @(posedge clk) begin

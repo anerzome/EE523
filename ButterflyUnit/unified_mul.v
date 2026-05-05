@@ -32,7 +32,9 @@ wire signed [23:0] d1 = sel ? b_lo_ext : b;
 // m2 
 wire signed [47:0] m2 = d1 * a_lo_ext;
 
+wire signed [47:0] m2_tweak = sel ? {{24{1'b0}}, m2[23:0]} : m2;
+
 // final 
-assign d = m2 + m1;
+assign d = m2_tweak + m1;
 
 endmodule
